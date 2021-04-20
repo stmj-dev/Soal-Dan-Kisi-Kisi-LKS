@@ -1,0 +1,55 @@
+KISI-KISI WILKER 3
+
+15 March 2021
+
+1. All your metadata belongs to us!
+EC2, CloudTrail, S3
+
+Zerus Inc. just launched their new service: The Metabrowser! A nice little web application which allows the user to look what lies behind the flashy and funky websites.
+Who would have thought that people would be so much interested in looking at HTML code!
+Unfortunately, something goes not the way as expected since the last marketing campaign: 
+You can observe that EC2 instances are spinning up and shutting down arbitrarily for some reason. Everybody in the team swears that it's not them.
+And since you are the security engineer of Zerus Inc., it is up to you to find out what is going on and to fix this issue.
+You are going to investigate a web application vulnerability and learn how to fix it within Amazon EC2.
+
+2. Need for Speed
+CodePipeline, CodeCommit, CodeBuild, S3, IAM
+
+Speedy Corp has hired external consultants to build the backend application. Consultants are good in unit tests but terrible at writing readable code.
+Consultants are complaining that the build is taking long time when addition checks are performed in build stage.
+
+3. Mallware in your bucket
+s3, Lambda, CloudWatch
+
+Your web application allows your users to upload their files and photos. In the back-end, the application stores the files to an S3 bucket. 
+You have to ensure that the incoming files are clean from any form of malware infection.
+
+=============================================================
+
+16 March 2021
+
+1. Analytics with peace of mind!!
+SageMaker, CodeCommi, S3
+
+IT Manager of Analytics team would like to leverage AWS Cloud Development Kit(CDK) to deploy SageMaker Notebook Instances, 
+which are linked to AWS CodeCommit repositories for versioning and to ensure Jupyter notebooks and files can be recoverd incase of accidental SageMaker instance termination.
+In this Challenge you will use AWS Sagemaker Notebook to perform data analysis and check in code to AWS Codecommit repository.
+
+
+2.Can you fix my chat bot
+Amazon Lex
+
+Jeff is IT director of the one of the largest floral companies in the world. As chatbots are getting increasingly popular, 
+he had led his team to successfully deploy a simple chatbot for customers purchasing flowers.
+
+However, the chatbot project was done in a rush. As more customers use the bot some errors are being reported. 
+Jeff is looking at improving the chatbot and identified a few areas of improvements> He is asking you, "Can you fix my chatbot?"
+
+3. A Modern Enigma
+Lambda
+
+An evil threat has emerged in the world over the past year by the name of Hydra. This militant organization is a danger to all who live in this world. 
+Just as the Nazi party of WWII utilized the Enigma machine to encrypt military communications, Hydra has developed an algorithm to encrypt their important codewords. 
+After a recent successful operation by the United Nations, the encryption ‘key’ for Hydra’s algorithm has been found. 
+You have been hired by the United Nations as a consultant to follow in the footsteps of Alan Turing and create a passphrase cracking machine that utilizes the newly acquired ‘key’.
+
