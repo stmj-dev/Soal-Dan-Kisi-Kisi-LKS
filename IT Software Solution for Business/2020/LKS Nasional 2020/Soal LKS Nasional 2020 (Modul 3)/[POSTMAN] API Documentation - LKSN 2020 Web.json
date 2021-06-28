@@ -1,0 +1,1684 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Esemka Sistem Sekolah Daring",
+    "description": "Ini merupakan dokumentasi API dari sistem sekolah daring. Untuk informasi lebih lanjut dapat menghubungi Juri di saat LKS Nasional 2020 berlangsung.  Untuk metode otorisasi yang diharapkan akan menerapkan `OAuth2.0` dengan `Access-Token` yang akan di dapat setelah login.",
+    "termsOfService": "",
+    "contact": {
+      "email": "esemka@sekolah.daring.org"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sekolah.daring.org/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "login",
+      "description": "Login untuk mendapatkan token akses"
+    },
+    {
+      "name": "logout",
+      "description": "Logout untuk membuang sesi aktif"
+    },
+    {
+      "name": "forgot",
+      "description": "Forgot untuk mengirim link reset password"
+    },
+    {
+      "name": "reset",
+      "description": "Reset untuk mereset password"
+    },
+    {
+      "name": "student",
+      "description": "Endpoint mengelola data siswa"
+    },
+    {
+      "name": "class",
+      "description": "Endpoint mengelola data kelas"
+    },
+    {
+      "name": "subject",
+      "description": "Endpoint mengelola data mata pelajaran"
+    },
+    {
+      "name": "score",
+      "description": "Endpoint mengelola data nilai"
+    },
+    {
+      "name": "teacher",
+      "description": "Endpoint mengelola data guru"
+    }
+  ],
+  "paths": {
+    "/login.php": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "summary": "Mendapatkan akses token",
+        "description": "Menyuplai nama pengguna dan kata sandi dari pengguna untuk mendapatkan token akses `Access Token` dalam masa waktu tertentu untuk dapat dipakai untuk mengakses endpoint lain",
+        "operationId": "retrieveAccessToken",
+        "requestBody": {
+          "description": "Parameter username dan password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mendapatkan token akses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessToken"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Mohon maaf username dan password wajib diisi",
+            "content": {}
+          },
+          "401": {
+            "description": "Mohon maaf maaf akses yang anda masukkan tidak terdaftar",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "LoginPayload"
+      }
+    },
+    "/logout.php": {
+      "post": {
+        "tags": [
+          "logout"
+        ],
+        "summary": "menonaktifkan token akses",
+        "description": "Logout untuk membuang sesi aktif dari user dengan menonaktifkan token akses dari user",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "Sukses menonaktifkan token akses dan mengembalikan ke halaman utama sebelum login",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/forgot.php": {
+      "post": {
+        "tags": [
+          "forgot"
+        ],
+        "summary": "Mereset password",
+        "description": "Forgot password untuk mereset password dan mengirimkan link reset password ke email pengguna sesuai dengan email yang dimasukkan. Link reset password adalah https://sekolah.daring.org/v1/reset/{encryptedKey}",
+        "operationId": "forgot",
+        "requestBody": {
+          "description": "Parameter username dan password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengirimkan link reset ke email",
+            "content": {}
+          },
+          "404": {
+            "description": "Mohon maaf email yang anda masukkan tidak terdaftar",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/reset.php": {
+      "post": {
+        "tags": [
+          "reset"
+        ],
+        "summary": "Mereset password",
+        "description": "Menerima inputan berupa password baru dan konfirmasi password baru",
+        "operationId": "reset",
+        "parameters": [
+          {
+            "name": "encryptedStudentId",
+            "in": "query",
+            "description": "Id unik dari siswa yang terenkripsi dengan MD5",
+            "example": "abc3b8a211bee2bb0c049eabfebd6b20",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Parameter password baru",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengubah kata sandi",
+            "content": {}
+          },
+          "400": {
+            "description": "Mohon maaf kata sandi dan konfirmasi kata sandi tidak cocok",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "ResetPayload"
+      }
+    },
+    "/student.php": {
+      "post": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Menambahkan data siswa baru",
+        "operationId": "addStudent",
+        "requestBody": {
+          "description": "Objek siswa yang akan ditambahkan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses menambahkan data siswa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "get": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Menarik data seluruh siswa",
+        "description": "Menarik data seluruh siswa sesuai dengan filter yang diberikan",
+        "operationId": "listStudents",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": "active",
+                "enum": [
+                  "active",
+                  "inactive",
+                  "graduate",
+                  "dropout"
+                ]
+              }
+            }
+          },
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "Id unik dari siswa",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menarik data siswa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Mohon maaf filter yang disuplai tidak sesuai format",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Mengubah data siswa yang sudah ada",
+        "operationId": "updateStudent",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "Id unik dari siswa",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objek data siswa yang telah diubah dan akan disimpan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengubah data siswa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          },
+          "404": {
+            "description": "ID siswa tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Menghapus data siswa",
+        "description": "Menghapus data siswa (soft delete) dengan menyimpan data tanggal penghapusan data siswa",
+        "operationId": "deleteStudent",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "Id unik dari siswa",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menghapus data siswa",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          },
+          "404": {
+            "description": "Mohon maaf data siswa tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    },
+    "/teacher": {
+      "post": {
+        "tags": [
+          "teacher"
+        ],
+        "summary": "Menambahkan data guru baru",
+        "operationId": "addTeacher",
+        "requestBody": {
+          "description": "Objek guru yang akan ditambahkan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Teacher"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses menambahkan data guru",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Teacher"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "get": {
+        "tags": [
+          "teacher"
+        ],
+        "summary": "Menarik data seluruh guru",
+        "description": "Menarik data seluruh guru sesuai dengan filter yang diberikan",
+        "operationId": "listTeachers",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": "active",
+                "enum": [
+                  "active",
+                  "inactive"
+                ]
+              }
+            }
+          },
+          {
+            "name": "teacherId",
+            "in": "query",
+            "description": "Id unik dari guru",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menarik data guru",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Teacher"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Mohon maaf filter yang disuplai tidak sesuai format",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "teacher"
+        ],
+        "summary": "Mengubah data guru yang sudah ada",
+        "operationId": "updateTeacher",
+        "parameters": [
+          {
+            "name": "teacherId",
+            "in": "query",
+            "description": "Id unik dari guru",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objek data guru yang telah diubah dan akan disimpan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Teacher"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Teacher"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengubah data siswa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          },
+          "404": {
+            "description": "ID guru tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "teacher"
+        ],
+        "summary": "Menghapus data guru",
+        "description": "Menghapus data guru (soft delete) dengan menyimpan data tanggal penghapusan data guru",
+        "operationId": "deleteTeacher",
+        "parameters": [
+          {
+            "name": "teacherId",
+            "in": "query",
+            "description": "Id unik dari guru",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menghapus data guru",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses",
+            "content": {}
+          },
+          "404": {
+            "description": "Mohon maaf data guru tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    },
+    "/class.php": {
+      "post": {
+        "tags": [
+          "class"
+        ],
+        "summary": "Menambahkan data kelas baru",
+        "operationId": "addClass",
+        "requestBody": {
+          "description": "Objek kelas yang akan ditambahkan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Class"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses menambahkan data kelas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menambahkan data kelas)",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "get": {
+        "tags": [
+          "class"
+        ],
+        "summary": "Menarik data seluruh class",
+        "description": "Menarik data seluruh class sesuai dengan filter yang diberikan",
+        "operationId": "listClasses",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "description": "Periode mengajar untuk data kelas - kelas yang akan dimunculkan",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2020/2021"
+            }
+          },
+          {
+            "name": "classId",
+            "in": "query",
+            "description": "Id unik dari class",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menarik data kelas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Class"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Mohon maaf filter yang disuplai tidak sesuai format",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menarik data kelas - kelas)",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "class"
+        ],
+        "summary": "Mengubah data kelas yang sudah ada",
+        "operationId": "updateClass",
+        "parameters": [
+          {
+            "name": "classId",
+            "in": "query",
+            "description": "Id unik dari class",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objek data kelas yang telah diubah dan akan disimpan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Class"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Class"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengubah data kelas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa mengubah data kelas)",
+            "content": {}
+          },
+          "404": {
+            "description": "ID kelas tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "class"
+        ],
+        "summary": "Menghapus data kelas",
+        "description": "Menghapus data kelas (soft delete) dengan menyimpan data tanggal penghapusan data kelas",
+        "operationId": "deleteClass",
+        "parameters": [
+          {
+            "name": "classId",
+            "in": "query",
+            "description": "Id unik dari kelas",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menghapus data kelas",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menghapus data kelas)",
+            "content": {}
+          },
+          "404": {
+            "description": "Mohon maaf data kelas tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    },
+    "/subject.php": {
+      "post": {
+        "tags": [
+          "subject"
+        ],
+        "summary": "Menambahkan data mata pelajaran baru",
+        "operationId": "addSubject",
+        "requestBody": {
+          "description": "Objek mata pelajaran yang akan ditambahkan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses menambahkan data mata pelajaran",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menambahkan data mata pelajaran)",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "get": {
+        "tags": [
+          "subject"
+        ],
+        "summary": "Menarik data seluruh mata pelajaran",
+        "description": "Menarik data seluruh mata pelajaran sesuai dengan filter yang diberikan",
+        "operationId": "listSubjects",
+        "parameters": [
+          {
+            "name": "semester",
+            "in": "query",
+            "description": "Periode semester dari mata pelajaran",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "odd"
+            }
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "description": "Tingkat dari mata pelajaran",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "XII"
+            }
+          },
+          {
+            "name": "classId",
+            "in": "query",
+            "description": "ID Kelas untuk mencari mata pelajaran pada kelas berjalan dengan mencocokkan level (tingkat) dan semester (periode semester) dari kelas dan mata pelajaran",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": 1
+            }
+          },
+          {
+            "name": "subjectId",
+            "in": "query",
+            "description": "Id unik dari mata pelajaran",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menarik data mata pelajaran",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Mohon maaf filter yang disuplai tidak sesuai format",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menarik data mata pelajaran)",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "subject"
+        ],
+        "summary": "Mengubah data mata pelajaran yang sudah ada",
+        "operationId": "updateSubject",
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "query",
+            "description": "Id unik dari subject",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objek data mata pelajara yang telah diubah dan akan disimpan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengubah data mata pelajaran",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa mengubah data mata pelajaran)",
+            "content": {}
+          },
+          "404": {
+            "description": "ID mata pelajaran tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "subject"
+        ],
+        "summary": "Menghapus data mata pelajaran",
+        "description": "Menghapus data mata pelajaran (soft delete) dengan menyimpan data tanggal penghapusan data mata pelajaran",
+        "operationId": "deleteSubject",
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "query",
+            "description": "Id unik dari mata pelajaran",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menghapus data mata pelajaran",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menghapus data mata pelajaran)",
+            "content": {}
+          },
+          "404": {
+            "description": "Mohon maaf data mata pelajaran tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    },
+    "/score.php": {
+      "post": {
+        "tags": [
+          "score"
+        ],
+        "summary": "Menambahkan nilai kepada siswa",
+        "operationId": "addScore",
+        "requestBody": {
+          "description": "Objek nilai yang akan ditambahkan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Score"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses memasukkan nilai",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa memasukkan nilai)",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "get": {
+        "tags": [
+          "score"
+        ],
+        "summary": "Menarik data seluruh nilai dari siswa",
+        "description": "Menarik data seluruh nilai sesuai dengan filter yang diberikan",
+        "operationId": "listScores",
+        "parameters": [
+          {
+            "name": "classId",
+            "in": "query",
+            "description": "ID Kelas untuk mencari nilai dari seluruh siswa mata pelajaran pada kelas berjalan",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": 1
+            }
+          },
+          {
+            "name": "scoreId",
+            "in": "query",
+            "description": "Id unik dari nilai",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menarik data nilai",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Score"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Mohon maaf filter yang disuplai tidak sesuai format",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menarik data nilai)",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "score"
+        ],
+        "summary": "Mengubah data nilai yang sudah ada",
+        "operationId": "updateScore",
+        "parameters": [
+          {
+            "name": "scoreId",
+            "in": "query",
+            "description": "Id unik dari nilai",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objek data nilai yang telah diubah dan akan disimpan",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Score"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Score"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengubah data nilai",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Data yang disuplai tidak sesuai dengan format yang disediakan",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa mengubah data nilai)",
+            "content": {}
+          },
+          "404": {
+            "description": "ID nilai tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "score"
+        ],
+        "summary": "Menghapus data nilai",
+        "description": "Menghapus data nilai (soft delete) dengan menyimpan data tanggal penghapusan data nilai",
+        "operationId": "deleteScore",
+        "parameters": [
+          {
+            "name": "scoreId",
+            "in": "query",
+            "description": "Id unik dari nilai",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses menghapus data nilai",
+            "content": {}
+          },
+          "403": {
+            "description": "Jika belum login atau tidak memiliki akses (Hanya guru yang bisa menghapus data nilai)",
+            "content": {}
+          },
+          "404": {
+            "description": "Mohon maaf data nilai tidak ditemukan",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Student": {
+        "required": [
+          "name",
+          "email",
+          "password",
+          "registeredNumber",
+          "imagePath",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Budi"
+          },
+          "email": {
+            "type": "string",
+            "example": "budi@sekolah.daring.org"
+          },
+          "password": {
+            "type": "string",
+            "description": "Kata sandi ini nantinya akan dienkripsi menggunakan metode MD5 pada saat disimpan ke dalam database",
+            "example": "katasandiinisangatrahasia"
+          },
+          "registeredNumber": {
+            "type": "string",
+            "example": "SSD1100001"
+          },
+          "imagePath": {
+            "type": "string",
+            "example": "/document/sekolah.daring.org/images/student/SSD1100001.jpg"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status dari siswa di sekolah daring",
+            "enum": [
+              "active",
+              "inactive",
+              "graduate",
+              "dropout"
+            ]
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "tanggal penghapusan data di database akan disimpan sbg datetime",
+            "example": "2020-10-01 10:10:10.000"
+          }
+        },
+        "xml": {
+          "name": "Student"
+        }
+      },
+      "Teacher": {
+        "required": [
+          "name",
+          "email",
+          "password",
+          "registeredNumber",
+          "imagePath",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Bu Guru"
+          },
+          "email": {
+            "type": "string",
+            "example": "ibuguru@sekolah.daring.org"
+          },
+          "password": {
+            "type": "string",
+            "description": "Kata sandi ini nantinya akan dienkripsi menggunakan metode MD5 pada saat disimpan ke dalam database",
+            "example": "katasandiinisangatrahasia"
+          },
+          "registeredNumber": {
+            "type": "string",
+            "example": "GSD1100001"
+          },
+          "imagePath": {
+            "type": "string",
+            "example": "/document/sekolah.daring.org/images/teacher/GSD1100001.jpg"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status dari guru di sekolah daring",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "tanggal penghapusan data di database akan disimpan sbg datetime",
+            "example": "2020-10-01 10:10:10.000"
+          }
+        },
+        "xml": {
+          "name": "Teacher"
+        }
+      },
+      "Class": {
+        "required": [
+          "name",
+          "period",
+          "level",
+          "semester",
+          "studentIds",
+          "students",
+          "teacherId",
+          "teacher",
+          "major"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Kelas XII"
+          },
+          "period": {
+            "type": "string",
+            "example": "2020/2021"
+          },
+          "semester": {
+            "type": "string",
+            "description": "Periode semester dari kelas",
+            "enum": [
+              "odd",
+              "even"
+            ],
+            "example": "odd"
+          },
+          "level": {
+            "type": "string",
+            "description": "Tingkat dari kelas",
+            "example": "XII"
+          },
+          "studentIds": {
+            "type": "array",
+            "description": "daftar id dari siswa yang berada di kelas itu (merupakan foreign key dari table student di database)",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "students": {
+            "type": "array",
+            "description": "kumpulan objek siswa",
+            "items": {
+              "$ref": "#/components/schemas/Student"
+            }
+          },
+          "teacherId": {
+            "type": "integer",
+            "description": "id dari guru wali kelas (Foreign key dari table teacher utk column teacherId)",
+            "format": "int64",
+            "example": 1
+          },
+          "teacher": {
+            "$ref": "#/components/schemas/Teacher"
+          },
+          "major": {
+            "type": "string",
+            "description": "Jurusan spesifik dari kelas",
+            "enum": [
+              "science",
+              "social",
+              "information_technology",
+              "networking",
+              "database",
+              "culinary",
+              "general"
+            ]
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "tanggal penghapusan data di database akan disimpan sbg datetime",
+            "example": "2020-10-01 10:10:10.000"
+          }
+        },
+        "xml": {
+          "name": "Class"
+        }
+      },
+      "Subject": {
+        "required": [
+          "name",
+          "major",
+          "level",
+          "semester",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Matematika"
+          },
+          "level": {
+            "type": "string",
+            "description": "Tingkat dari kelas",
+            "example": "XII"
+          },
+          "semester": {
+            "type": "string",
+            "description": "Periode semester dari mata pelajaran",
+            "enum": [
+              "odd",
+              "even"
+            ],
+            "example": "odd"
+          },
+          "major": {
+            "type": "string",
+            "description": "Jurusan spesifik dari kelas",
+            "enum": [
+              "science",
+              "social",
+              "information technology",
+              "networking",
+              "database",
+              "culinary",
+              "general"
+            ],
+            "example": "general"
+          },
+          "description": {
+            "type": "string",
+            "example": "Pelajaran Matematika untuk tingkat XII"
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "tanggal penghapusan data di database akan disimpan sbg datetime",
+            "example": "2020-10-01 10:10:10.000"
+          }
+        },
+        "xml": {
+          "name": "Subject"
+        }
+      },
+      "Score": {
+        "required": [
+          "score",
+          "classId",
+          "subjectId",
+          "studentId",
+          "teacherId",
+          "scoreType",
+          "notes"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "score": {
+            "type": "number",
+            "example": 92.4
+          },
+          "classId": {
+            "type": "integer",
+            "description": "ID Kelas dari nilai yang akan diberikan",
+            "example": 1
+          },
+          "subjectId": {
+            "type": "integer",
+            "description": "ID Mata pelajaran dari nilai yang akan diberikan",
+            "example": 1
+          },
+          "studentId": {
+            "type": "integer",
+            "description": "ID Siswa dari nilai yang akan diberikan",
+            "example": 1
+          },
+          "teacherId": {
+            "type": "integer",
+            "description": "ID guru yang memberikan nilai",
+            "example": 1
+          },
+          "scoreType": {
+            "type": "string",
+            "description": "Jenis penilaian",
+            "enum": [
+              "Assignment",
+              "Quiz",
+              "Mid Exam",
+              "Final Exam"
+            ],
+            "example": "general"
+          },
+          "notes": {
+            "type": "string",
+            "example": "catatan tambahan yang diberikan oleh guru"
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "tanggal penghapusan data di database akan disimpan sbg datetime",
+            "example": "2020-10-01 10:10:10.000"
+          }
+        },
+        "xml": {
+          "name": "Score"
+        }
+      },
+      "ForgotPayload": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "siswa.online@sekolah.daring.org"
+          }
+        },
+        "xml": {
+          "name": "ForgotPayload"
+        }
+      },
+      "LoginPayload": {
+        "required": [
+          "password",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "siswa.online@sekolah.daring.org"
+          },
+          "password": {
+            "type": "string",
+            "example": "inikatasandiyangsangatrahasia"
+          }
+        },
+        "xml": {
+          "name": "LoginPayload"
+        }
+      },
+      "ResetPayload": {
+        "required": [
+          "newPassword",
+          "confNewPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "example": "katasandibaru"
+          },
+          "confNewPassword": {
+            "type": "string",
+            "example": "katasandibaru"
+          }
+        },
+        "xml": {
+          "name": "ResetPayload"
+        }
+      },
+      "AccessToken": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "HbagbhsayK12ansfq190ans18"
+          },
+          "expired": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3600
+          },
+          "type": {
+            "type": "string",
+            "example": "access-token"
+          }
+        },
+        "xml": {
+          "name": "AccessToken"
+        }
+      }
+    },
+    "securitySchemes": {
+      "access_token": {
+        "type": "apiKey",
+        "name": "Access-Token",
+        "in": "header"
+      }
+    }
+  }
+}
