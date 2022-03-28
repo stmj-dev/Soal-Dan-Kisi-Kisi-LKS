@@ -1,3 +1,5 @@
+# Resources LKS SMKN 1 JENANGAN
+
 ## IT Software Solution for Business
 
 - <a href="https://github.com/fachruwildan"> Fachru Wildan Afdinal </a> (2020)
@@ -18,6 +20,9 @@
 - <a href="https://github.com/defrindr"> Defri Indra Mahardika</a> (2020)
 - <a href="https://github.com/DarkLocuts"> Muhammad Noor Hidayatulloh </a> (2021)
 - [Zulfiikar Ditya Antariksa](https://github.com/zulfikar-dityaa) (2022)
+
+### File Latihan
+- [Web Tech 2022 + Hasil Lomba](https://drive.google.com/drive/folders/12A7e1wtSa_dOl7XDJbi3TIh14NCQ7_-6?usp=sharing)
 
 ## Graphic Design Technology
 
