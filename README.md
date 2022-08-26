@@ -4,7 +4,7 @@
 
 - <a href="https://github.com/fachruwildan"> Fachru Wildan Afdinal </a> (2020)
 - <a href="https://github.com/adhiariyadi"> Adhi Ariyadi</a> (2021)
-- [Noklent Fardian Erix](https://github.com/Noklent) (2022)
+- [Noklent Fardian Erix](https://github.com/Noklent-Fardian) (2022)
 
 ---
 
