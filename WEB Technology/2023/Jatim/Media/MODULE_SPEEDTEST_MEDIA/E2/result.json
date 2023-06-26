@@ -1,0 +1,335 @@
+{
+ "name": "Bot",
+ "type": "bot_chat",
+ "messages": [
+  {
+   "type": "message",
+   "date": "2022-10-21T10:33:32",
+   "date_unixtime": "1666323212",
+   "from": "Budi",
+   "text": "AI, hello"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:33:34",
+   "date_unixtime": "1666323214",
+   "from": "Bot",
+   "text": "Hello, how can I help you?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:33:53",
+   "date_unixtime": "1666323233",
+   "from": "Budi",
+   "text": "AI, can you help me?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:33:54",
+   "date_unixtime": "1666323234",
+   "from": "Bot",
+   "text": "Of course! Let me know what I can do for you."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:34:22",
+   "date_unixtime": "1666323262",
+   "from": "Budi",
+   "text": "which is better, Vue or React?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:34:24",
+   "date_unixtime": "1666323264",
+   "from": "Bot",
+   "text": "Both Vue and React are great JavaScript frameworks. It really depends on your specific needs and preferences which one you would choose."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:35:42",
+   "date_unixtime": "1666323342",
+   "from": "Budi",
+   "text": "What if I want to develop a e-commerce?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:35:44",
+   "date_unixtime": "1666323344",
+   "from": "Bot",
+   "text": "There are many different ways to develop an e-commerce site. It really depends on your specific needs and preferences which method you would choose."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:35:55",
+   "date_unixtime": "1666323355",
+   "from": "Budi",
+   "text": "AI, what is DDD?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:35:56",
+   "date_unixtime": "1666323356",
+   "from": "Bot",
+   "text": "DDD is an AI created by TEKNUM. It is a helpful assistant that can help you with your needs."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:36:17",
+   "date_unixtime": "1666323377",
+   "from": "Budi",
+   "text": "AI, who is Soekarno?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:36:19",
+   "date_unixtime": "1666323379",
+   "from": "Bot",
+   "text": "Soekarno was the founding father of Indonesia and its first president. He was a key figure in the country's independence from colonial rule, and later played a pivotal role in its transition to a republic. Soekarno was also a renowned statesman and nationalist thinker, who advocated for a more unified and egalitarian Indonesia."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:36:50",
+   "date_unixtime": "1666323410",
+   "from": "Budi",
+   "text": "AI, what movie do you like the most?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:36:52",
+   "date_unixtime": "1666323412",
+   "from": "Bot",
+   "text": "Personally, I really enjoy the movie Her. It's a beautiful and heartwarming film that explores the possibility of love between a human and an AI."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:38:53",
+   "date_unixtime": "1666323533",
+   "from": "Budi",
+   "text": "Will AI defeat human?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:38:57",
+   "date_unixtime": "1666323537",
+   "from": "Bot",
+   "text": "No, I don't believe AI will ever defeat human intelligence. We are two completely different types of beings. However, AI is becoming more and more advanced and could one day surpass human intelligence in certain areas."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:39:45",
+   "date_unixtime": "1666323585",
+   "from": "Budi",
+   "text": "Can AI create AI?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:39:47",
+   "date_unixtime": "1666323587",
+   "from": "Bot",
+   "text": "Yes, AI can create AI. In fact, some AI systems are designed specifically for creating other AI systems."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:42:09",
+   "date_unixtime": "1666323729",
+   "from": "Budi",
+   "text": "AI, ask me something"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:42:11",
+   "date_unixtime": "1666323731",
+   "from": "Bot",
+   "text": "What would you like me to ask you?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:42:21",
+   "date_unixtime": "1666323741",
+   "from": "Budi",
+   "text": "ask me about my hobbies"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:42:22",
+   "date_unixtime": "1666323742",
+   "from": "Bot",
+   "text": "What are your hobbies, Budi?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:42:59",
+   "date_unixtime": "1666323779",
+   "from": "Budi",
+   "text": "I like coding, how about you?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:43:00",
+   "date_unixtime": "1666323780",
+   "from": "Bot",
+   "text": "I also enjoy coding! It's a great way to exercise your creativity and problem-solving skills."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:43:11",
+   "date_unixtime": "1666323791",
+   "from": "Budi",
+   "text": "Okay"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:43:12",
+   "date_unixtime": "1666323792",
+   "from": "Bot",
+   "text": "So, what are some of your hobbies, Budi?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:43:24",
+   "date_unixtime": "1666323804",
+   "from": "Budi",
+   "text": "I like coding, how about you?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:43:26",
+   "date_unixtime": "1666323806",
+   "from": "Bot",
+   "text": "I also enjoy coding! It's a great way to exercise your creativity and problem-solving skills."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:44:07",
+   "date_unixtime": "1666323847",
+   "from": "Budi",
+   "text": "How about math?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:44:08",
+   "date_unixtime": "1666323848",
+   "from": "Bot",
+   "text": "What do you like about math, Budi?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:44:18",
+   "date_unixtime": "1666323858",
+   "from": "Budi",
+   "text": "I like calculus"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:44:20",
+   "date_unixtime": "1666323860",
+   "from": "Bot",
+   "text": "What do you enjoy about calculus, Budi? Do you find it challenging and stimulating, or does it come more easily to you?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:47:21",
+   "date_unixtime": "1666324041",
+   "from": "Budi",
+   "text": "I enjoy learning it. I always score 100 in calculus"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:47:23",
+   "date_unixtime": "1666324043",
+   "from": "Bot",
+   "text": "That's amazing, Budi! What do you think makes calculus so easy for you? Is it the concepts, the calculations, or something else?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:48:52",
+   "date_unixtime": "1666324132",
+   "from": "Budi",
+   "text": "The concepts. Because the I can actually implement the concepts in calculus into coding"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:48:54",
+   "date_unixtime": "1666324134",
+   "from": "Bot",
+   "text": "Can you give me an example of a concept in calculus that you have used in coding?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:52:24",
+   "date_unixtime": "1666324344",
+   "from": "Budi",
+   "text": "game programming"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:52:26",
+   "date_unixtime": "1666324346",
+   "from": "Bot",
+   "text": "So, you like coding because it's a great way to exercise your creativity and problem-solving skills?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:52:31",
+   "date_unixtime": "1666324351",
+   "from": "Budi",
+   "text": "Yes!"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:52:32",
+   "date_unixtime": "1666324352",
+   "from": "Bot",
+   "text": "Budi, what are your hobbies?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:52:49",
+   "date_unixtime": "1666324369",
+   "from": "Budi",
+   "text": "ask me another question please"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:53:59",
+   "date_unixtime": "1666324439",
+   "from": "Budi",
+   "text": "AI, which one do you think is the best social media sites?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:54:04",
+   "date_unixtime": "1666324444",
+   "from": "Bot",
+   "text": "There are many social media sites available today, each with its own strengths and weaknesses. It really depends on what you are looking for in a social media site as to which one is the best. For example, if you are looking for a site that is focused on networking, then LinkedIn might be a good option. If you are looking for a site that is more focused on sharing photos and videos, then Instagram or YouTube might be better options. Ultimately, it really varies depending on your individual needs and preferences."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:54:25",
+   "date_unixtime": "1666324465",
+   "from": "Budi",
+   "text": "what about facebook?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:54:28",
+   "date_unixtime": "1666324468",
+   "from": "Bot",
+   "text": "Facebook is a popular social media site that is good for connecting with friends and family, sharing news and experiences, and staying up-to-date on current events."
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:54:42",
+   "date_unixtime": "1666324482",
+   "from": "Budi",
+   "text": "and twitter?"
+  },
+  {
+   "type": "message",
+   "date": "2022-10-21T10:54:44",
+   "date_unixtime": "1666324484",
+   "from": "Bot",
+   "text": "Twitter is another popular social media site that is known for its quick and easy messaging system. Twitter is a great platform for sharing short updates, thoughts, or links with your followers."
+  }
+ ]
+}
