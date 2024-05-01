@@ -18,6 +18,7 @@
 
 ## WEB Technology
 
+- <a href="https://github.com/alfanzain"> Alfan Zain Kusuma Putra</a> (2013)
 - <a href="https://github.com/defrindr"> Defri Indra Mahardika</a> (2020)
 - <a href="https://github.com/DarkLocuts"> Muhammad Noor Hidayatulloh </a> (2021)
 - [Zulfikar Ditya Antariksa](https://github.com/zulfikar-ditya) (2022)
