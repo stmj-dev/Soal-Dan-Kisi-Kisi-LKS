@@ -5,6 +5,7 @@
 - <a href="https://github.com/fachruwildan"> Fachru Wildan Afdinal </a> (2020)
 - <a href="https://github.com/adhiariyadi"> Adhi Ariyadi</a> (2021)
 - [Noklent Fardian Erix](https://github.com/Noklent-Fardian) (2022)
+- <a href="https://github.com/MiftaSetya"> Mifta Setya Pratama </a> (2024)
 
 ---
 
@@ -17,7 +18,6 @@
 
 ## WEB Technology
 
-- <a href="https://github.com/alfanzain"> Alfan Zain Kusuma Putra</a> (2013)
 - <a href="https://github.com/defrindr"> Defri Indra Mahardika</a> (2020)
 - <a href="https://github.com/DarkLocuts"> Muhammad Noor Hidayatulloh </a> (2021)
 - [Zulfikar Ditya Antariksa](https://github.com/zulfikar-ditya) (2022)
