@@ -1,0 +1,29 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+    padding-top: 3.5rem;
+}
+.btn, .jumbotron {
+    border-radius: 0;
+}
+.jumbotron {
+    background: #FAFAFA;
+}
+.spot {
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    background: #FAFAFA;
+}
+.unavailable {
+    opacity: 0.5;
+    cursor: default;
+}
+.slot {
+    background: #FAFAFA;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+}
+.slot.filled {
+    border: 2px solid #44b844;
+}
