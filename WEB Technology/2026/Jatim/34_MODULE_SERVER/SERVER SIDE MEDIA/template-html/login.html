@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — WelBuilder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Form -->
+  <div class="auth-panel">
+    <div class="auth-card">
+
+      <div class="auth-card__header">
+        <h1 class="auth-card__title">Sign In</h1>
+        <p class="auth-card__subtitle">Enter your credentials to continue</p>
+      </div>
+
+      <div class="auth-card__body">
+
+        <!-- Email field -->
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Password field with error example -->
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            class="form-input form-input--error"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+          <span class="form-error">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6.5" cy="6.5" r="5.5" stroke="#c0392b" stroke-width="1.5"/>
+              <path d="M6.5 4v3" stroke="#c0392b" stroke-width="1.5" stroke-linecap="square"/>
+              <circle cx="6.5" cy="9" r="0.7" fill="#c0392b"/>
+            </svg>
+            The password you entered is incorrect.
+          </span>
+        </div>
+
+        <button class="btn btn--primary btn--full" type="button">
+          Sign In
+        </button>
+
+      </div>
+
+      <div class="auth-card__footer">
+        <span>Don't have an account?</span>
+        <a href="register.html">Create one</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

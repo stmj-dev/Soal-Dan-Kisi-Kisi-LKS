@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Builder — WelBuilder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="pages.html" class="navbar__brand"> 
+        WelBuilder
+      </a>
+      <div class="navbar__actions">
+        <button class="navbar__menu-toggle" type="button" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button class="btn btn--ghost btn--sm" type="button">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6.5" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M1 12c0-2.485 2.462-4.5 5.5-4.5S12 9.515 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+          John Doe
+        </button>
+        <button class="btn btn--ghost btn--sm" type="button">Logout</button>
+      </div>
+    </nav>
+
+    <div class="app-main">
+      <div class="builder-layout"> 
+
+
+        <!-- ── MAIN CANVAS ── -->
+        <div class="builder-main">
+
+          <!-- Toolbar -->
+          <div class="builder-toolbar">
+            <div class="builder-toolbar__left">
+              <div class="builder-breadcrumb">
+                <a href="pages.html">Pages</a>
+                <span>→</span>
+                <span>Homepage</span>
+              </div>
+              <div class="builder-toolbar__divider"></div>
+              <span class="tag">3 sections</span>
+            </div>
+            <div class="navbar__actions"> 
+              <a href="preview.html" class="btn btn--primary btn--sm">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.5 1v11M1 6.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                </svg>
+                Add Section
+              </a>
+              <a href="preview.html" class="btn btn--ghost btn--sm">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 6.5C1 6.5 3 2 6.5 2S12 6.5 12 6.5 10 11 6.5 11 1 6.5 1 6.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  <circle cx="6.5" cy="6.5" r="1.75" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                Preview
+              </a>
+            </div>
+          </div>
+
+          <!-- Canvas -->
+          <div class="builder-canvas">
+
+            <!-- Field editor: Hero Section (open/active) -->
+            <div class="field-editor field-editor--open">
+              <div class="field-editor__header">
+                <div>
+                  <div class="field-editor__title">
+                    <span class="tag">01</span>
+                    &nbsp; Hero Section
+                  </div>
+                  <div class="field-editor__meta">template: hero-banner</div>
+                </div>
+                <div class="field-editor__toggle">
+                  <span>Collapse</span>
+                  <svg class="field-editor__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="field-editor__body">
+                <div class="form-group">
+                  <label class="form-label" for="f-hero-title">Heading</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="f-hero-title"
+                    placeholder="Enter heading text…"
+                    value="Build Beautiful Pages, Fast."
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="f-hero-subtitle">Subtitle</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="f-hero-subtitle"
+                    placeholder="Enter subtitle text…"
+                    value="The visual page builder for modern teams."
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="f-hero-cta">Button Label</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="f-hero-cta"
+                    placeholder="e.g. Get Started"
+                    value="Get Started"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="f-hero-image">Background Image URL</label>
+                  <input
+                    class="form-input"
+                    type="url"
+                    id="f-hero-image"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                </div>
+              </div>
+              <div class="field-editor__footer">
+                <div class="shortcuts-hint">
+                  <span class="kbd">Esc</span> to close
+                </div>
+                <div class="field-editor__footer-actions">
+                  <button class="btn btn--ghost btn--sm" type="button">Discard</button>
+                  <button class="btn btn--primary btn--sm" type="button">Save</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Field editor: Features Grid (collapsed) -->
+            <div class="field-editor">
+              <div class="field-editor__header">
+                <div>
+                  <div class="field-editor__title">
+                    <span class="tag">02</span>
+                    &nbsp; Features Grid
+                  </div>
+                  <div class="field-editor__meta">template: feature-grid · 4 fields</div>
+                </div>
+                <div class="field-editor__toggle">
+                  <span>Expand</span>
+                  <svg class="field-editor__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 7l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Field editor: CTA Strip (collapsed) -->
+            <div class="field-editor">
+              <div class="field-editor__header">
+                <div>
+                  <div class="field-editor__title">
+                    <span class="tag">03</span>
+                    &nbsp; Call to Action
+                  </div>
+                  <div class="field-editor__meta">template: cta-strip · 2 fields</div>
+                </div>
+                <div class="field-editor__toggle">
+                  <span>Expand</span>
+                  <svg class="field-editor__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 7l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Section inline panel -->
+            <div class="add-section-panel">
+              <div class="add-section-panel__header">
+                <span class="add-section-panel__title">Add Section</span>
+                <button class="btn btn--ghost btn--sm btn--icon" type="button">
+                  <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1l9 9M10 1L1 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="form-wrap">
+                <div class="form-group" style="flex:1">
+                  <label class="form-label" for="section-name">Section Name</label>
+                  <input type="text" class="form-input" id="section-name" placeholder="Hero 1" name="name"> 
+                </div>
+                <div class="form-group" style="flex:1">
+                  <label class="form-label" for="section-template">Section Template</label>
+                  <select class="form-input" id="section-template" name="template_id">
+                    <option value="" disabled selected>Choose a template…</option>
+                    <option value="hero-banner">hero-banner — Hero Banner</option>
+                    <option value="feature-grid">feature-grid — Features Grid</option>
+                    <option value="cta-strip">cta-strip — Call to Action</option>
+                    <option value="text-block">text-block — Text Block</option>
+                    <option value="image-gallery">image-gallery — Image Gallery</option>
+                    <option value="testimonials">testimonials — Testimonials</option>
+                  </select>
+                </div>
+                <button class="btn btn--primary" type="button" style="align-self:flex-start">
+                  Add
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <!-- /canvas -->
+
+        </div>
+        <!-- /builder-main -->
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ======================================================
+       MODAL: Confirm Remove Section
+       ====================================================== -->
+  <!--
+  <div class="modal-backdrop">
+    <div class="modal confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-remove-title">
+      <div class="modal__header">
+        <h2 class="modal__title" id="modal-remove-title">Remove Section</h2>
+        <button class="modal__close" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="modal__body">
+        <div class="confirm-dialog__icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 4v7" stroke="#c0392b" stroke-width="2" stroke-linecap="square"/>
+            <circle cx="11" cy="16" r="1" fill="#c0392b"/>
+            <path d="M3 19L11 3l8 16H3z" stroke="#c0392b" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="confirm-dialog__text">
+          Remove <strong>"Hero Section"</strong> from this page?<br>
+          This action cannot be undone.
+        </p>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" type="button">Cancel</button>
+        <button class="btn btn--danger" type="button">Ok, Remove</button>
+      </div>
+    </div>
+  </div>
+  -->
+
+</body>
+</html>
